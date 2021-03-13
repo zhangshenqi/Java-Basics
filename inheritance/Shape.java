@@ -62,4 +62,13 @@ public abstract class Shape {
         sb.append(" circumference = ").append(getCircumference());
         return sb.toString();
     }
+    
+    /**
+     * Indicate whether some other object is "equal" to this shape.
+     * @param obj other object
+     */
+    @Override
+    public boolean equals(Object obj) {
+        return (obj != null) && (this.getClass() == obj.getClass());
+    }
 }

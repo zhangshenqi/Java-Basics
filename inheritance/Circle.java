@@ -64,8 +64,8 @@ public class Circle extends Shape {
     }
     
     /**
-     * Get the area of the circle.
-     * @return area of the circle
+     * Get the area of this circle.
+     * @return area of this circle
      */
     @Override
     protected double getArea() {
@@ -93,5 +93,19 @@ public class Circle extends Shape {
         sb.append(" area = ").append(getArea());
         sb.append(" circumference = ").append(getCircumference());
         return sb.toString();
+    }
+    
+    /**
+     * Indicate whether some other object is "equal" to this circle.
+     * @param obj other object
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        
+        Circle that = (Circle) obj;
+        return this.radius == that.radius;
     }
 }

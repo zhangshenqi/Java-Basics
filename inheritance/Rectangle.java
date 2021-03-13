@@ -79,7 +79,7 @@ public class Rectangle extends Shape {
     
     /**
      * Set the width of this rectangle.
-     * @param newWidth with
+     * @param width width of this rectangle
      */
     public void setWidth(double width) {
         if (width <= 0) {
@@ -119,5 +119,19 @@ public class Rectangle extends Shape {
         sb.append(" area = ").append(getArea());
         sb.append(" circumference = ").append(getCircumference());
         return sb.toString();
+    }
+    
+    /**
+     * Indicate whether some other object is "equal" to this rectangle.
+     * @param obj other object
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        
+        Rectangle that = (Rectangle) obj;
+        return this.length == that.length && this.width == that.width;
     }
 }
