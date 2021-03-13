@@ -5,12 +5,12 @@
  */
 public abstract class Shape {
     /**
-     * Static variable to keep track of the number of shapes.
+     * Number of shapes.
      */
     private static int numShapes = 0;
     
     /**
-     * Static method to get the number of shapes.
+     * Gets the number of shapes.
      * @return number of shapes
      */
     public static int getNumShapes() {
@@ -23,7 +23,7 @@ public abstract class Shape {
     private final int idShape;
     
     /**
-     * Constructor.
+     * Constructs a shape.
      */
     public Shape() {
         idShape = numShapes;
@@ -31,7 +31,7 @@ public abstract class Shape {
     }
     
     /**
-     * Get the id of this shape.
+     * Gets the id of this shape.
      * @return id of this shape
      */
     public int getIdShape() {
@@ -39,19 +39,19 @@ public abstract class Shape {
     }
     
     /**
-     * Get the area of this shape.
+     * Gets the area of this shape.
      * @return area of this shape
      */
     protected abstract double getArea();
     
     /**
-     * Get the circumference of this shape.
+     * Gets the circumference of this shape.
      * @return circumference of this shape
      */
     protected abstract double getCircumference();
     
     /**
-     * Return the string representation of this shape.
+     * Returns the string representation of this shape.
      * @return string representation of this shape
      */
     @Override
@@ -64,8 +64,8 @@ public abstract class Shape {
     }
     
     /**
-     * Indicate whether some other object is "equal" to this shape.
-     * @param obj other object
+     * Indicates whether some other object is "equal to" this shape.
+     * @param obj the reference object with which to compare
      */
     @Override
     public boolean equals(Object obj) {

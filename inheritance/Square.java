@@ -5,12 +5,12 @@
  */
 public class Square extends Rectangle {
     /**
-     * Static variable to keep track of the number of squares.
+     * Number of squares.
      */
     private static int numSquares = 0;
     
     /**
-     * Static method to get the number of squares.
+     * Gets the number of squares.
      * @return number of squares
      */
     public static int getNumSquares() {
@@ -23,7 +23,7 @@ public class Square extends Rectangle {
     private final int idSquare;
     
     /**
-     * Constructor with side.
+     * Constructs a square with specified side.
      * @param side side of this square
      */
     public Square(double side) {
@@ -33,7 +33,7 @@ public class Square extends Rectangle {
     }
     
     /**
-     * Get the id of this square.
+     * Gets the id of this square.
      * @return id of this square
      */
     public int getIdSquare() {
@@ -41,7 +41,7 @@ public class Square extends Rectangle {
     }
     
     /**
-     * Get the side of this square.
+     * Gets the side of this square.
      * @return side of this square
      */
     public double getSide() {
@@ -49,7 +49,7 @@ public class Square extends Rectangle {
     }
     
     /**
-     * Set the side of this square.
+     * Sets the side of this square.
      * @param side side of this square
      */
     public void setSide(double side) {
@@ -58,7 +58,7 @@ public class Square extends Rectangle {
     }
     
     /**
-     * Return the string representation of this square.
+     * Returns the string representation of this square.
      * @return string representation of this square
      */
     @Override

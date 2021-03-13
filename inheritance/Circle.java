@@ -5,12 +5,12 @@
  */
 public class Circle extends Shape {
     /**
-     * Static variable to keep track of the number of circles.
+     * Number of circles.
      */
     private static int numCircles = 0;
     
     /**
-     * Static method to get the number of circles.
+     * Gets the number of circles.
      * @return number of circles
      */
     public static int getNumCircles() {
@@ -27,7 +27,7 @@ public class Circle extends Shape {
     private double radius;
     
     /**
-     * Constructor with radius.
+     * Constructs a circle with specified radius.
      * @param radius radius of this circle
      */
     public Circle(double radius) {
@@ -37,7 +37,7 @@ public class Circle extends Shape {
     }
     
     /**
-     * Get the id of this circle.
+     * Gets the id of this circle.
      * @return id of this circle
      */
     public int getIdCircle() {
@@ -45,7 +45,7 @@ public class Circle extends Shape {
     }
     
     /**
-     * Get the radius of this circle.
+     * Gets the radius of this circle.
      * @return radius of this circle
      */
     public double getRadius() {
@@ -53,7 +53,7 @@ public class Circle extends Shape {
     }
     
     /**
-     * Set the radius of this circle.
+     * Sets the radius of this circle.
      * @param radius radius of this circle
      */
     public void setRadius(double radius) {
@@ -64,7 +64,7 @@ public class Circle extends Shape {
     }
     
     /**
-     * Get the area of this circle.
+     * Gets the area of this circle.
      * @return area of this circle
      */
     @Override
@@ -73,7 +73,7 @@ public class Circle extends Shape {
     }
     
     /**
-     * Get the circumference of this circle.
+     * Gets the circumference of this circle.
      * @return circumference of this circle
      */
     @Override
@@ -82,7 +82,7 @@ public class Circle extends Shape {
     }
     
     /**
-     * Return the string representation of this circle.
+     * Returns the string representation of this circle.
      * @return string representation of this circle
      */
     @Override
@@ -96,8 +96,8 @@ public class Circle extends Shape {
     }
     
     /**
-     * Indicate whether some other object is "equal" to this circle.
-     * @param obj other object
+     * Indicates whether some other object is "equal to" this circle.
+     * @param obj the reference object with which to compare
      */
     @Override
     public boolean equals(Object obj) {

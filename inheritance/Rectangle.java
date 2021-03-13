@@ -5,12 +5,12 @@
  */
 public class Rectangle extends Shape {
     /**
-     * Static variable to keep track of the number of rectangles.
+     * Number of rectangles.
      */
     private static int numRectangles = 0;
     
     /**
-     * Static method to get the number of rectangles.
+     * Gets the number of rectangles.
      * @return number of rectangles
      */
     public static int getNumRectangles() {
@@ -31,7 +31,7 @@ public class Rectangle extends Shape {
     private double width;
     
     /**
-     * Constructor with length and width.
+     * Constructs a rectangle with specified length and width.
      * @param length length of this rectangle
      * @param width width of this rectangle
      */
@@ -43,7 +43,7 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Get the id of this rectangle.
+     * Gets the id of this rectangle.
      * @return id of this rectangle
      */
     public int getIdRectangle() {
@@ -51,7 +51,7 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Get the length of this rectangle.
+     * Gets the length of this rectangle.
      * @return length of this rectangle
      */
     public double getLength() {
@@ -59,7 +59,7 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Get the width of this rectangle.
+     * Gets the width of this rectangle.
      * @return width of this rectangle
      */
     public double getWidth() {
@@ -67,7 +67,7 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Set the length of this rectangle.
+     * Sets the length of this rectangle.
      * @param length length of this rectangle
      */
     public void setLength(double length) {
@@ -78,7 +78,7 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Set the width of this rectangle.
+     * Sets the width of this rectangle.
      * @param width width of this rectangle
      */
     public void setWidth(double width) {
@@ -89,7 +89,7 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Get the area of this rectangle.
+     * Gets the area of this rectangle.
      * @return area of this rectangle
      */
     @Override
@@ -98,7 +98,7 @@ public class Rectangle extends Shape {
     }
 
     /**
-     * Get the circumference of this rectangle.
+     * Gets the circumference of this rectangle.
      * @return circumference of this rectangle
      */
     @Override
@@ -107,7 +107,7 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Return the string representation of this rectangle.
+     * Returns the string representation of this rectangle.
      * @return string representation of this rectangle
      */
     @Override
@@ -122,8 +122,8 @@ public class Rectangle extends Shape {
     }
     
     /**
-     * Indicate whether some other object is "equal" to this rectangle.
-     * @param obj other object
+     * Indicates whether some other object is "equal to" this rectangle.
+     * @param obj the reference object with which to compare
      */
     @Override
     public boolean equals(Object obj) {
