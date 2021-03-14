@@ -93,7 +93,7 @@ public class Rectangle extends Shape {
      * @return area of this rectangle
      */
     @Override
-    protected double getArea() {
+    public double getArea() {
         return length * width;
     }
 
@@ -102,7 +102,7 @@ public class Rectangle extends Shape {
      * @return circumference of this rectangle
      */
     @Override
-    protected double getCircumference() {
+    public double getCircumference() {
         return 2 * (length + width);
     }
     

@@ -68,7 +68,7 @@ public class Circle extends Shape {
      * @return area of this circle
      */
     @Override
-    protected double getArea() {
+    public double getArea() {
         return Math.PI * radius * radius;
     }
     
@@ -77,7 +77,7 @@ public class Circle extends Shape {
      * @return circumference of this circle
      */
     @Override
-    protected double getCircumference() {
+    public double getCircumference() {
         return 2 * Math.PI * radius;
     }
     

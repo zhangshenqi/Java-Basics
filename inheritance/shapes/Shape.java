@@ -42,13 +42,13 @@ public abstract class Shape implements Comparable<Shape> {
      * Gets the area of this shape.
      * @return area of this shape
      */
-    protected abstract double getArea();
+    public abstract double getArea();
     
     /**
      * Gets the circumference of this shape.
      * @return circumference of this shape
      */
-    protected abstract double getCircumference();
+    public abstract double getCircumference();
     
     /**
      * Returns the string representation of this shape.
