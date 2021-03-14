@@ -3,7 +3,7 @@
  * @author Shenqi Zhang
  *
  */
-public abstract class Shape {
+public abstract class Shape implements Comparable<Shape> {
     /**
      * Number of shapes.
      */
@@ -70,5 +70,14 @@ public abstract class Shape {
     @Override
     public boolean equals(Object obj) {
         return (obj != null) && (this.getClass() == obj.getClass());
+    }
+    
+    /**
+     * Compares this shape with the specified shape for order.
+     * @param that the shape to be compared
+     */
+    @Override
+    public int compareTo(Shape that) {
+        return Integer.compare(this.idShape, that.idShape);
     }
 }

@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Code for testing shapes.
  * @author Shenqi Zhang
@@ -63,5 +66,32 @@ public class ShapeTest {
         System.out.println(Rectangle.getNumRectangles());
         System.out.println("Get the number of squares");
         System.out.println(Square.getNumSquares());
+        System.out.println();
+        
+        System.out.println("Create an array of shapes");
+        Shape[] shapes = {s1, s0, r1, r0, c1, c0};
+        for (Shape shape : shapes) {
+            System.out.println(shape);
+        }
+        System.out.println("Sort shapes with id");
+        Arrays.sort(shapes);
+        for (Shape shape : shapes) {
+            System.out.println(shape);
+        }
+        System.out.println("Sort shapes with area");
+        Arrays.sort(shapes, new ShapeAreaComparator());
+        for (Shape shape : shapes) {
+            System.out.println(shape);
+        }
+        System.out.println("Sort shapes with reverse order of id");
+        Arrays.sort(shapes, Collections.reverseOrder());
+        for (Shape shape : shapes) {
+            System.out.println(shape);
+        }
+        System.out.println("Sort shapes with circumference");
+        Arrays.sort(shapes, new ShapeCircumferenceComparator());
+        for (Shape shape : shapes) {
+            System.out.println(shape);
+        }
     }
 }
