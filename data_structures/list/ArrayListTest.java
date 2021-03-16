@@ -4,6 +4,10 @@
  *
  */
 public class ArrayListTest {
+    /**
+     * Print the list.
+     * @param list the list to print
+     */
     public static <E> void printList(List<E> list) {
         System.out.print("size = ");
         System.out.print(list.size());
@@ -16,7 +20,7 @@ public class ArrayListTest {
     }
     
     /**
-     * Test ArrayList
+     * Test ArrayList.
      * @param args arguments
      */
     public static void main(String[] args) {

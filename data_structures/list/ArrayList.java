@@ -16,7 +16,7 @@ public class ArrayList<E> implements List<E> {
      */
     private Object[] elements;
     /**
-     * size of this list.
+     * Size of this list.
      */
     private int size;
     
