@@ -65,6 +65,9 @@ public class LinkedListTest {
         System.out.println("Set the element at index 3 to be Three");
         System.out.println(list.set(3, "Three"));
         printList(list);
+        System.out.println("Reverse the list");
+        list.reverse();
+        printList(list);
         System.out.println("Iterate the list");
         Iterator<String> iter = list.iterator();
         while (iter.hasNext()) {

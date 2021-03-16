@@ -96,6 +96,9 @@ public class ArrayListTest {
         System.out.println("Remove element at index 1");
         System.out.println(list2.remove(1));
         printList(list2);
+        System.out.println("Reverse the list");
+        list2.reverse();
+        printList(list2);
         System.out.println("Iterate the list");
         Iterator<String> iter = list2.iterator();
         while (iter.hasNext()) {

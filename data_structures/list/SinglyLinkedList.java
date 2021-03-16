@@ -232,6 +232,22 @@ public class SinglyLinkedList<E> implements List<E> {
     }
     
     /**
+     * Reverse the list.
+     */
+    @Override
+    public void reverse() {
+        Node<E> prev = null;
+        Node<E> curr = head;
+        while (curr != null) {
+            Node<E> next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+    
+    /**
      * Returns a string representation of this list.
      * @return a string representation of this list
      */

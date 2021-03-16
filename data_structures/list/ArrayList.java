@@ -241,6 +241,21 @@ public class ArrayList<E> implements List<E> {
     }
     
     /**
+     * Reverse the list.
+     */
+    @Override
+    public void reverse() {
+        int i = 0, j = size - 1;
+        while (i < j) {
+            Object temp = elements[i];
+            elements[i] = elements[j];
+            elements[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    
+    /**
      * Trims the capacity of this ArrayList instance to be the list's current size.
      */
     public void trimToSize() {

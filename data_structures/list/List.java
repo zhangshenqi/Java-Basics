@@ -98,4 +98,9 @@ public interface List<E> {
      * or -1 if this list does not contain the element
      */
     int lastIndexOf(E e);
+    
+    /**
+     * Reverse the list.
+     */
+    void reverse();
 }
