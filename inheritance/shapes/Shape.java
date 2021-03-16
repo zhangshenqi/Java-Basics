@@ -66,6 +66,7 @@ public abstract class Shape implements Comparable<Shape> {
     /**
      * Indicates whether some other object is "equal to" this shape.
      * @param obj the reference object with which to compare
+     * @return true if this object is the same as the obj argument; false otherwise.
      */
     @Override
     public boolean equals(Object obj) {
@@ -75,6 +76,7 @@ public abstract class Shape implements Comparable<Shape> {
     /**
      * Compares this shape with the specified shape for order.
      * @param that the shape to be compared
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified shape.
      */
     @Override
     public int compareTo(Shape that) {
