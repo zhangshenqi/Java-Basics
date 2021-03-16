@@ -2,23 +2,32 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Singly-linked list implementation of the List interface.
+ * Doubly-linked list implementation of the List interface.
  * Permits all elements, including null.
  * @author Shenqi Zhang
  * @param <E> the type of elements in this list
  *
  */
-public class SinglyLinkedList<E> implements List<E> {
+public class DoublyLinkedList<E> implements List<E> {
     /**
      * Head node of this list.
      */
     private Node<E> head;
+    /**
+     * Tail node of this list.
+     */
+    private Node<E> tail;
+    /**
+     * Size of this list.
+     */
+    private int size;
     
     /**
      * Constructs an empty list.
      */
-    public SinglyLinkedList() {
+    public DoublyLinkedList() {
         head = null;
+        tail = null;
     }
     
     /**
@@ -27,13 +36,7 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public int size() {
-        int count = 0;
-        Node<E> curr = head;
-        while (curr != null) {
-            count++;
-            curr = curr.next;
-        }
-        return count;
+        return size;
     }
     
     /**
@@ -42,7 +45,7 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public boolean isEmpty() {
-        return head == null;
+        return size == 0;
     }
     
     /**
@@ -72,14 +75,12 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public boolean add(E e) {
         if (head == null) {
-            head = new Node<E>(e, null);
+            head = tail = new Node<E>(e, null, null);
         } else {
-            Node<E> curr = head;
-            while (curr.next != null) {
-                curr = curr.next;
-            }
-            curr.next = new Node<E>(e, null);
+            tail.next = new Node<E>(e, tail, null);
+            tail = tail.next;
         }
+        size++;
         return true;
     }
     
@@ -91,26 +92,14 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public boolean remove(E e) {
-        if (head == null) {
-            return false;
-        }
-        
-        if (elementEquals(head.item, e)) {
-            head = head.next;
-            return true;
-        }
-        
-        Node<E> prev = head;
-        Node<E> curr = head.next;
+        Node<E> curr = head;
         while (curr != null) {
             if (elementEquals(curr.item, e)) {
-                prev.next = curr.next;
+                remove(curr);
                 return true;
             }
-            prev = curr;
             curr = curr.next;
         }
-        
         return false;
     }
     
@@ -119,7 +108,8 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public void clear() {
-        head = null;
+        head = tail = null;
+        size = 0;
     }
     
     /**
@@ -154,13 +144,22 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public void add(int index, E element) {
         if (index == 0) {
-            head = new Node<E>(element, head);
+            head = new Node<E>(element, null, head);
+            size++;
             return;
         }
         
         Node<E> prev = getNode(index - 1);
-        Node<E> curr = new Node<E>(element, prev.next);
+        Node<E> next = prev.next;
+        Node<E> curr = new Node<E>(element, prev, next);
         prev.next = curr;
+        if (next == null) {
+            tail = curr;
+        } else {
+            next.prev = curr;
+        }
+        size++;
+        return;
     }
     
     /**
@@ -170,24 +169,9 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public E remove(int index) {
-        if (head == null) {
-            throw new IndexOutOfBoundsException();
-        }
-        
-        if (index == 0) {
-            E e = head.item;
-            head = head.next;
-            return e;
-        }
-        
-        Node<E> prev = getNode(index - 1);
-        Node<E> curr = prev.next;
-        if (curr == null) {
-            throw new IndexOutOfBoundsException();
-        }
-        E e = curr.item;
-        prev.next = prev.next.next;
-        return e;
+        Node<E> node = getNode(index);
+        remove(node);
+        return node.item; 
     }
     
     /**
@@ -220,16 +204,16 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public int lastIndexOf(E e) {
-        int count = 0, result = -1;
-        Node<E> curr = head;
+        int count = size - 1;
+        Node<E> curr = tail;
         while (curr != null) {
             if (elementEquals(curr.item, e)) {
-                result = count;
+                return count;
             }
-            count++;
-            curr = curr.next;
+            count--;
+            curr = curr.prev;
         }
-        return result;
+        return -1;
     }
     
     /**
@@ -237,15 +221,14 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public void reverse() {
-        Node<E> prev = null;
-        Node<E> curr = head;
-        while (curr != null) {
-            Node<E> next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+        Node<E> node1 = head, node2 = tail;
+        for (int i = 1; i < size; i += 2) {
+            E temp = node1.item;
+            node1.item = node2.item;
+            node2.item = temp;
+            node1 = node1.next;
+            node2 = node2.prev;
         }
-        head = prev;
     }
     
     /**
@@ -286,18 +269,39 @@ public class SinglyLinkedList<E> implements List<E> {
      * @return the node at the specified position in this list
      */
     private Node<E> getNode(int index) throws IndexOutOfBoundsException {
-        int count = 0;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        
         Node<E> curr = head;
-        while (count < index && curr != null) {
-            count++;
+        while (index > 0) {
             curr = curr.next;
+            index--;
         }
         
-        if (count == index && curr != null) {
-            return curr;
+        return curr;
+    }
+    
+    private void remove(Node<E> curr) {
+        Node<E> prev = curr.prev;
+        Node<E> next = curr.next;
+        if (prev == null) {
+            if (next == null) {
+                head = tail = null;
+            } else {
+                next.prev = null;
+                head = next;
+            }
+        } else {
+            if (next == null) {
+                prev.next = null;
+                tail = prev;
+            } else {
+                prev.next = next;
+                next.prev = prev;
+            }
         }
-        
-        throw new IndexOutOfBoundsException();
+        size--;
     }
     
     /**
@@ -349,6 +353,10 @@ public class SinglyLinkedList<E> implements List<E> {
          */
         private E item;
         /**
+         * Previous node;
+         */
+        private Node<E> prev;
+        /**
          * Next node;
          */
         private Node<E> next;
@@ -358,8 +366,9 @@ public class SinglyLinkedList<E> implements List<E> {
          * @param element element
          * @param next next node
          */
-        Node(E element, Node<E> next) {
+        Node(E element, Node<E> prev, Node<E> next) {
             this.item = element;
+            this.prev = prev;
             this.next = next;
         }
     }

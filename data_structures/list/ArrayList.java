@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 /**
  * Resizable-array implementation of the List interface.
+ * Permits all elements, including null.
  * @author Shenqi Zhang
  * @param <E> the type of elements in this list
  *

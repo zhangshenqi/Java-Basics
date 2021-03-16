@@ -60,7 +60,7 @@ public class LinkedListTest {
         System.out.println(list.lastIndexOf("Four"));
         System.out.println("Get the element at index 0");
         System.out.println(list.get(0));
-        System.out.println("Get the element at index 0");
+        System.out.println("Get the element at index 3");
         System.out.println(list.get(3));
         System.out.println("Set the element at index 3 to be Three");
         System.out.println(list.set(3, "Three"));
@@ -80,7 +80,8 @@ public class LinkedListTest {
      * @param args arguments
      */
     public static void main(String[] args) {
-        List<String> list1 = new SinglyLinkedList<String>();
-        testList(list1);
+        testList(new SinglyLinkedList<String>());
+        System.out.println();
+        testList(new DoublyLinkedList<String>());
     }
 }
