@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  * An ordered collection (also known as a sequence).
  * @author Shenqi Zhang
@@ -23,6 +25,12 @@ public interface List<E> {
      * @return true if this list contains the specified element
      */
     boolean contains(E e);
+    
+    /**
+     * Returns an iterator over the elements in this list in proper sequence.
+     * @return an iterator over the elements in this list in proper sequence
+     */
+    Iterator<E> iterator();
     
     /**
      * Appends the specified element to the end of this list (optional operation).

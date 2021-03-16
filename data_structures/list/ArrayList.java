@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Resizable-array implementation of the List interface.
@@ -39,6 +41,7 @@ public class ArrayList<E> implements List<E> {
      * Returns the number of elements in this list.
      * @return the number of elements in this list
      */
+    @Override
     public int size() {
         return size;
     }
@@ -47,6 +50,7 @@ public class ArrayList<E> implements List<E> {
      * Returns true if this list contains no elements.
      * @return if this list contains no elements
      */
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
@@ -64,8 +68,18 @@ public class ArrayList<E> implements List<E> {
      * @param e element whose presence in this list is to be tested
      * @return true if this list contains the specified element
      */
+    @Override
     public boolean contains(E e) {
         return indexOf(e) != -1;
+    }
+    
+    /**
+     * Returns an iterator over the elements in this list in proper sequence.
+     * @return an iterator over the elements in this list in proper sequence
+     */
+    @Override
+    public Iterator<E> iterator() {
+        return new ArrayListIterator();
     }
     
     /**
@@ -73,6 +87,7 @@ public class ArrayList<E> implements List<E> {
      * @param e element to be appended to this list
      * @return true if this list changed as a result of the call
      */
+    @Override
     public boolean add(E e) {
         ensureCapacity(size + 1);
         elements[size] = e;
@@ -86,6 +101,7 @@ public class ArrayList<E> implements List<E> {
      * @param e element to be removed from this list, if present
      * @return true if this list contained the specified element
      */
+    @Override
     public boolean remove(E e) {
         int index = indexOf(e);
         if (index == -1) {
@@ -102,6 +118,7 @@ public class ArrayList<E> implements List<E> {
     /**
      * Removes all of the elements from this list (optional operation).
      */
+    @Override
     public void clear() {
         Arrays.fill(elements, 0, size, null);
         size = 0;
@@ -112,6 +129,7 @@ public class ArrayList<E> implements List<E> {
      * @param index index of the element to return
      * @return the element at the specified position in this list
      */
+    @Override
     public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -127,6 +145,7 @@ public class ArrayList<E> implements List<E> {
      * @param element element to be stored at the specified position
      * @return the element previously at the specified position
      */
+    @Override
     public E set(int index, E element) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -142,6 +161,7 @@ public class ArrayList<E> implements List<E> {
      * @param index index at which the specified element is to be inserted
      * @param element element to be inserted
      */
+    @Override
     public void add(int index, E element) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
@@ -159,6 +179,7 @@ public class ArrayList<E> implements List<E> {
      * @param index the index of the element to be removed
      * @return the element previously at the specified position
      */
+    @Override
     public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -180,6 +201,7 @@ public class ArrayList<E> implements List<E> {
      * @return the index of the first occurrence of the specified element in this list, 
      * or -1 if this list does not contain the element
      */
+    @Override
     public int indexOf(E e) {
         for (int i = 0; i < size; i++) {
             if (elements[i] == null) {
@@ -202,6 +224,7 @@ public class ArrayList<E> implements List<E> {
      * @return the index of the last occurrence of the specified element in this list,
      * or -1 if this list does not contain the element
      */
+    @Override
     public int lastIndexOf(E e) {
         for (int i = size - 1; i >= 0; i--) {
             if (elements[i] == null) {
@@ -255,5 +278,44 @@ public class ArrayList<E> implements List<E> {
         }
         sb.append("]");
         return sb.toString();
+    }
+    
+    /**
+     * An iterator over an array list.
+     *
+     */
+    private class ArrayListIterator implements Iterator<E> {
+        /**
+         * Next index to iterate.
+         */
+        private int next;
+        ArrayListIterator() {
+            next = 0;
+        }
+        
+        /**
+         * Returns true if the iteration has more elements.
+         * @return true if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return next < size;
+        }
+        
+        /**
+         * Returns the next element in the iteration.
+         * @return the next element in the iteration
+         */
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            
+            @SuppressWarnings("unchecked")
+            E e = (E) elements[next];
+            next++;
+            return e;
+        }
     }
 }

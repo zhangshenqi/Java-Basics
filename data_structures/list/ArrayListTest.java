@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  * Code for testing ArrayList.
  * @author Shenqi Zhang
@@ -94,5 +96,10 @@ public class ArrayListTest {
         System.out.println("Remove element at index 1");
         System.out.println(list2.remove(1));
         printList(list2);
+        System.out.println("Iterate the list");
+        Iterator<String> iter = list2.iterator();
+        while (iter.hasNext()) {
+            System.out.println(iter.next());
+        }
     }
 }
