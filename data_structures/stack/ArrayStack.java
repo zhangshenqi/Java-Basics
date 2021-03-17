@@ -21,7 +21,7 @@ public class ArrayStack<E> implements Stack<E> {
     private int top;
     
     /**
-     * Constructs an empty stack with an capacity of ten.
+     * Constructs an empty stack with a capacity of ten.
      */
     public ArrayStack() {
         this(DEFAULT_CAPACITY);
