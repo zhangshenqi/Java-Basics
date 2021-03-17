@@ -63,7 +63,8 @@ public class ArrayStack<E> implements Stack<E> {
         }
         
         @SuppressWarnings("unchecked")
-        E e = (E) elements[top--];
+        E e = (E) elements[top];
+        elements[top--] = null;
         return e;
     }
     
