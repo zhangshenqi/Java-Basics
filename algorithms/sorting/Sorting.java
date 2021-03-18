@@ -19,6 +19,24 @@ public class Sorting {
     }
     
     /**
+     * Sorts the specified array into ascending numerical order.
+     * @param a the array to be sorted
+     */
+    public static void selectionSort(int[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] < a[min]) {
+                    min = j;
+                }
+            }
+            if (i != min) {
+                swap(a, i, min);
+            }
+        }
+    }
+    
+    /**
      * Swap two elements in the array.
      * @param a array
      * @param index1 index of the first element
