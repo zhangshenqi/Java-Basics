@@ -49,6 +49,10 @@ public class SortingTest {
             clone = a.clone();
             Sorting.selectionSort(clone);
             assert sorted(clone);
+            
+            clone = a.clone();
+            Sorting.insertionSort(clone);
+            assert sorted(clone);
         }
     }
 }
