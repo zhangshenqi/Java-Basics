@@ -39,7 +39,7 @@ public class SortingTest {
      */
     public static void main(String[] args) {
       //add "-ea" into VM arguments
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             int[] a = generateRandomArray(), clone;
             
             clone = a.clone();
@@ -61,6 +61,10 @@ public class SortingTest {
             clone = a.clone();
             Sorting.quickSort(clone);
             assert sorted(clone);
+            
+            int k = ThreadLocalRandom.current().nextInt(0, a.length);
+            int num = Sorting.quickSelect(a, k);
+            assert num == clone[k];
         }
     }
 }
