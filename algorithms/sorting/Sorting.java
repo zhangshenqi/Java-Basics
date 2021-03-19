@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * This class contains various methods for sorting an array.
  * @author Shenqi Zhang
@@ -151,6 +153,63 @@ public class Sorting {
         }
         swap(a, i, right);
         return i;
+    }
+    
+    /**
+     * Selects the kth smallest element in the specified array.
+     * @param a the array to be searched
+     * @param k kth smallest
+     * @return the kth smallest element
+     */
+    public static int quickSelect(int[] a, int k) {
+        Random random = new Random();
+        return quickSelect(a, k, 0, a.length - 1, random);
+    }
+    
+    /**
+     * Selects the kth smallest element in the specified array.
+     * @param a the array to be searched
+     * @param k kth smallest
+     * @param left the index of the first element, inclusive, to be searched
+     * @param right the index of the last element, inclusive, to be searched
+     * @param random a random util
+     * @return the kth smallest element
+     */
+    public static int quickSelect(int[] a, int k, int left, int right, Random random) {
+        if (left == right) {
+            return a[left];
+        }
+        int pivotIndex = left + random.nextInt(right - left + 1);
+        pivotIndex = partition(a, left, right, pivotIndex);
+        if (k < pivotIndex) {
+            return quickSelect(a, k, left, pivotIndex - 1, random);
+        } else if (k > pivotIndex) {
+            return quickSelect(a, k, pivotIndex + 1, right, random);
+        } else {
+            return a[k];
+        }
+    }
+    
+    /**
+     * Partitions the specified array into two parts with a pivot value.
+     * @param a the array to be partitioned
+     * @param left the index of the first element, inclusive, to be partitioned
+     * @param right the index of the last element, inclusive, to be partitioned
+     * @param pivotIndex the index of the pivot value before the partition
+     * @return the index of the pivot value
+     */
+    private static int partition(int[] a, int left, int right, int pivotIndex) {
+        int pivot = a[pivotIndex];
+        swap(a, pivotIndex, right);
+        pivotIndex = left;
+        for (int i = left; i < right; i++) {
+            if (a[i] < pivot) {
+                swap(a, pivotIndex, i);
+                pivotIndex++;
+            }
+        }
+        swap(a, pivotIndex, right);
+        return pivotIndex;
     }
     
     /**
