@@ -57,6 +57,10 @@ public class SortingTest {
             clone = a.clone();
             Sorting.mergeSort(clone);
             assert sorted(clone);
+            
+            clone = a.clone();
+            Sorting.quickSort(clone);
+            assert sorted(clone);
         }
     }
 }

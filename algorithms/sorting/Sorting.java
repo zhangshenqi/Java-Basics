@@ -108,6 +108,52 @@ public class Sorting {
     }
     
     /**
+     * Sorts the specified array into ascending numerical order.
+     * @param a the array to be sorted
+     */
+    public static void quickSort(int[] a) {
+        quickSort(a, 0, a.length - 1);
+    }
+    
+    /**
+     * Sorts the specified array into ascending numerical order.
+     * @param a the array to be sorted
+     * @param left the index of the first element, inclusive, to be sorted
+     * @param right the index of the last element, inclusive, to be sorted
+     */
+    private static void quickSort(int[] a, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int pivotIndex = partition(a, left, right);
+        quickSort(a, left, pivotIndex - 1);
+        quickSort(a, pivotIndex + 1, right);
+    }
+    
+    /**
+     * Partitions the specified array into two parts with a pivot value.
+     * @param a the array to be partitioned
+     * @param left the index of the first element, inclusive, to be partitioned
+     * @param right the index of the last element, inclusive, to be partitioned
+     * @return the index of the pivot value
+     */
+    private static int partition(int[] a, int left, int right) {
+        int pivot = a[right];
+        int i = left - 1, j = right;
+        while (true) {
+            while (a[++i] < pivot);
+            while (j > left && a[--j] > pivot);
+            if (i >= j) {
+                break;
+            } else {
+                swap(a, i, j);
+            }
+        }
+        swap(a, i, right);
+        return i;
+    }
+    
+    /**
      * Swap two elements in the array.
      * @param a array
      * @param index1 index of the first element
