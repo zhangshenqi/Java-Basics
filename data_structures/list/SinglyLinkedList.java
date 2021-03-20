@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * @param <E> the type of elements in this list
  *
  */
-public class SinglyLinkedList<E> implements List<E> {
+public class SinglyLinkedList<E extends Comparable<E>> implements List<E> {
     /**
      * Head node of this list.
      */
@@ -233,7 +233,7 @@ public class SinglyLinkedList<E> implements List<E> {
     }
     
     /**
-     * Reverse the list.
+     * Reverses the list.
      */
     @Override
     public void reverse() {
@@ -246,6 +246,62 @@ public class SinglyLinkedList<E> implements List<E> {
             curr = next;
         }
         head = prev;
+    }
+    
+    /**
+     * Sorts this list into ascending order, according to the natural ordering of its elements.
+     */
+    @Override
+    public void sort() {
+        head = sort(head);
+    }
+    
+    /**
+     * Sorts the specified list into ascending order, according to the natural ordering of its elements.
+     * @param l1 the list to be sorted
+     * @return the head of the sorted array
+     */
+    private Node<E> sort(Node<E> l1) {
+        if (l1 == null || l1.next == null) {
+            return l1;
+        }
+        Node<E> slow = l1, fast = l1.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node<E> l2 = slow.next;
+        slow.next = null;
+        l1 = sort(l1);
+        l2 = sort(l2);
+        return merge(l1, l2);
+    }
+    
+    /**
+     * Merges two sorted list into one sorted list.
+     * @param l1 the first list to be merged
+     * @param l2 the second list to be merged
+     * @return the merged list
+     */
+    private Node<E> merge(Node<E> l1, Node<E> l2) {
+        Node<E> dummyHead = new Node<E>(null, null), curr = dummyHead;
+        while (l1 != null && l2 != null) {
+            if (l1.item.compareTo(l2.item) <= 0) {
+                curr.next = l1;
+                l1 = l1.next;
+            } else {
+                curr.next = l2;
+                l2 = l2.next;
+            }
+            curr = curr.next;
+        }
+        if (l1 != null) {
+            curr.next = l1;
+        }
+        if (l2 != null) {
+            curr.next = l2;
+        }
+        return dummyHead.next;
     }
     
     /**
