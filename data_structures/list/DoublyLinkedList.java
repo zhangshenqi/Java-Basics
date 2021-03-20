@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * @param <E> the type of elements in this list
  *
  */
-public class DoublyLinkedList<E> implements List<E> {
+public class DoublyLinkedList<E extends Comparable<E>> implements List<E> {
     /**
      * Head node of this list.
      */
@@ -217,7 +217,7 @@ public class DoublyLinkedList<E> implements List<E> {
     }
     
     /**
-     * Reverse the list.
+     * Reverses the list.
      */
     @Override
     public void reverse() {
@@ -229,6 +229,59 @@ public class DoublyLinkedList<E> implements List<E> {
             node1 = node1.next;
             node2 = node2.prev;
         }
+    }
+    
+    /**
+     * Sorts this list into ascending order, according to the natural ordering of its elements.
+     */
+    @Override
+    public void sort() {
+        quickSort(head, tail);
+    }
+    
+    /**
+     * Sorts this list into ascending order, according to the natural ordering of its elements.
+     * @param left the first node
+     * @param right the last node
+     */
+    private void quickSort(Node<E> left, Node<E> right) {
+        if (left == null || right == null || left == right) {
+            return;
+        }
+        Node<E> pivotNode = partition(left, right);
+        quickSort(left, pivotNode.prev);
+        quickSort(pivotNode.next, right);
+    }
+    
+    /**
+     * Partitions the specified list into two parts with a pivot value.
+     * @param left the first node
+     * @param right the last node
+     * @return the node with the pivot value
+     */
+    private Node<E> partition(Node<E> left, Node<E> right) {
+        System.out.println("left=" + left.item + " right=" + right.item);
+        E privot = right.item;
+        Node<E> pivotNode = left;
+        for (Node<E> curr = left; curr != right; curr = curr.next) {
+            if (curr.item.compareTo(privot) < 0) {
+                swap(pivotNode, curr);
+                pivotNode = pivotNode.next;
+            }
+        }
+        swap(pivotNode, right);
+        return pivotNode;
+    }
+    
+    /**
+     * Swaps the items of two nodes.
+     * @param node1 the first node
+     * @param node2 the second node
+     */
+    private void swap(Node<E> node1, Node<E> node2) {
+        E temp = node1.item;
+        node1.item = node2.item;
+        node2.item = temp;
     }
     
     /**
@@ -282,6 +335,10 @@ public class DoublyLinkedList<E> implements List<E> {
         return curr;
     }
     
+    /**
+     * Remove a node from this list
+     * @param curr the node to be removed
+     */
     private void remove(Node<E> curr) {
         Node<E> prev = curr.prev;
         Node<E> next = curr.next;

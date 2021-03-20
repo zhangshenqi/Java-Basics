@@ -253,7 +253,7 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public void sort() {
-        head = sort(head);
+        head = mergeSort(head);
     }
     
     /**
@@ -261,7 +261,7 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E> {
      * @param l1 the list to be sorted
      * @return the head of the sorted array
      */
-    private Node<E> sort(Node<E> l1) {
+    private Node<E> mergeSort(Node<E> l1) {
         if (l1 == null || l1.next == null) {
             return l1;
         }
@@ -272,8 +272,8 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E> {
         }
         Node<E> l2 = slow.next;
         slow.next = null;
-        l1 = sort(l1);
-        l2 = sort(l2);
+        l1 = mergeSort(l1);
+        l2 = mergeSort(l2);
         return merge(l1, l2);
     }
     

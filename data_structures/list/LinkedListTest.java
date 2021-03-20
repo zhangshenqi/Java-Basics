@@ -85,6 +85,6 @@ public class LinkedListTest {
     public static void main(String[] args) {
         testList(new SinglyLinkedList<String>());
         System.out.println();
-//        testList(new DoublyLinkedList<String>());
+        testList(new DoublyLinkedList<String>());
     }
 }
