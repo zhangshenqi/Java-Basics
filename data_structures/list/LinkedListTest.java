@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -68,8 +69,17 @@ public class LinkedListTest {
         System.out.println("Reverse the list");
         list.reverse();
         printList(list);
-        System.out.println("Sort the list");
+        System.out.println("Sort the list in natural order");
         list.sort();
+        printList(list);
+        System.out.println("Sort the list in reverse order");
+        list.sort(Collections.reverseOrder());
+        printList(list);
+        System.out.println("Sort the list using string length");
+        list.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+        printList(list);
+        System.out.println("Sort the list in natural order");
+        list.sort(null);
         printList(list);
         System.out.println("Iterate the list");
         Iterator<String> iter = list.iterator();

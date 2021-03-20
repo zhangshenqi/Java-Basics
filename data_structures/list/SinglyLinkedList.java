@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -253,15 +254,28 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public void sort() {
-        head = mergeSort(head);
+        sort(null);
+    }
+    
+    /**
+     * Sorts this list into ascending order, according to the natural ordering of its elements.
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
+     */
+    @Override
+    public void sort(Comparator<E> c) {
+        if (c == null) {
+            c = (e1, e2) -> e1.compareTo(e2);
+        }
+        head = mergeSort(head, c);
     }
     
     /**
      * Sorts the specified list into ascending order, according to the natural ordering of its elements.
      * @param l1 the list to be sorted
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
      * @return the head of the sorted array
      */
-    private Node<E> mergeSort(Node<E> l1) {
+    private Node<E> mergeSort(Node<E> l1, Comparator<E> c) {
         if (l1 == null || l1.next == null) {
             return l1;
         }
@@ -272,21 +286,22 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E> {
         }
         Node<E> l2 = slow.next;
         slow.next = null;
-        l1 = mergeSort(l1);
-        l2 = mergeSort(l2);
-        return merge(l1, l2);
+        l1 = mergeSort(l1, c);
+        l2 = mergeSort(l2, c);
+        return merge(l1, l2, c);
     }
     
     /**
      * Merges two sorted list into one sorted list.
      * @param l1 the first list to be merged
      * @param l2 the second list to be merged
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
      * @return the merged list
      */
-    private Node<E> merge(Node<E> l1, Node<E> l2) {
+    private Node<E> merge(Node<E> l1, Node<E> l2, Comparator<E> c) {
         Node<E> dummyHead = new Node<E>(null, null), curr = dummyHead;
         while (l1 != null && l2 != null) {
-            if (l1.item.compareTo(l2.item) <= 0) {
+            if (c.compare(l1.item, l2.item) <= 0) {
                 curr.next = l1;
                 l1 = l1.next;
             } else {

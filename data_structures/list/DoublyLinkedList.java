@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -236,34 +237,48 @@ public class DoublyLinkedList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public void sort() {
-        quickSort(head, tail);
+        sort(null);
+    }
+    
+    /**
+     * Sorts this list into ascending order, according to the natural ordering of its elements.
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
+     */
+    @Override
+    public void sort(Comparator<E> c) {
+        if (c == null) {
+            c = (e1, e2) -> e1.compareTo(e2);
+        }
+        quickSort(head, tail, c);
     }
     
     /**
      * Sorts this list into ascending order, according to the natural ordering of its elements.
      * @param left the first node
      * @param right the last node
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
      */
-    private void quickSort(Node<E> left, Node<E> right) {
-        if (left == null || right == null || left == right) {
+    private void quickSort(Node<E> left, Node<E> right, Comparator<E> c) {
+        if (left == null || right == null || left == right || left.prev == right) {
             return;
         }
-        Node<E> pivotNode = partition(left, right);
-        quickSort(left, pivotNode.prev);
-        quickSort(pivotNode.next, right);
+        Node<E> pivotNode = partition(left, right, c);
+        quickSort(left, pivotNode.prev, c);
+        quickSort(pivotNode.next, right, c);
     }
     
     /**
      * Partitions the specified list into two parts with a pivot value.
      * @param left the first node
      * @param right the last node
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
      * @return the node with the pivot value
      */
-    private Node<E> partition(Node<E> left, Node<E> right) {
-        E privot = right.item;
+    private Node<E> partition(Node<E> left, Node<E> right, Comparator<E> c) {
+        E pivot = right.item;
         Node<E> pivotNode = left;
         for (Node<E> curr = left; curr != right; curr = curr.next) {
-            if (curr.item.compareTo(privot) < 0) {
+            if (c.compare(curr.item, pivot) < 0) {
                 swap(pivotNode, curr);
                 pivotNode = pivotNode.next;
             }
