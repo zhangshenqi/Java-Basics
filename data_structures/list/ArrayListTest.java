@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -90,8 +91,17 @@ public class ArrayListTest {
         list2.add(0, "Zero");
         list2.add(3, "Three");
         printList(list2);
-        System.out.println("Sort the list");
+        System.out.println("Sort the list in natural order");
         list2.sort();
+        printList(list2);
+        System.out.println("Sort the list in reverse order");
+        list2.sort(Collections.reverseOrder());
+        printList(list2);
+        System.out.println("Sort the list using string length");
+        list2.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+        printList(list2);
+        System.out.println("Sort the list in natural order");
+        list2.sort(null);
         printList(list2);
         System.out.println("Remove Zero");
         System.out.println(list2.remove("Zero"));
