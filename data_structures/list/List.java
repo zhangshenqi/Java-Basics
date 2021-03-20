@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -108,4 +109,10 @@ public interface List<E extends Comparable<E>> {
      * Sorts this list into ascending order, according to the natural ordering of its elements.
      */
     void sort();
+    
+    /**
+     * Sorts this list according to the order induced by the specified comparator.
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
+     */
+    void sort(Comparator<E> c);
 }
