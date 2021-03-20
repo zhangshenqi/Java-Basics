@@ -10,7 +10,7 @@ public class ArrayListTest {
      * Print the list.
      * @param list the list to print
      */
-    public static <E> void printList(List<E> list) {
+    public static <E extends Comparable<E>> void printList(List<E> list) {
         System.out.print("size = ");
         System.out.print(list.size());
         if (list instanceof ArrayList<?>) {
@@ -89,6 +89,9 @@ public class ArrayListTest {
         list2.add("Two");
         list2.add(0, "Zero");
         list2.add(3, "Three");
+        printList(list2);
+        System.out.println("Sort the list");
+        list2.sort();
         printList(list2);
         System.out.println("Remove Zero");
         System.out.println(list2.remove("Zero"));
