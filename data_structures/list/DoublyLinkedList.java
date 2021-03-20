@@ -260,7 +260,6 @@ public class DoublyLinkedList<E extends Comparable<E>> implements List<E> {
      * @return the node with the pivot value
      */
     private Node<E> partition(Node<E> left, Node<E> right) {
-        System.out.println("left=" + left.item + " right=" + right.item);
         E privot = right.item;
         Node<E> pivotNode = left;
         for (Node<E> curr = left; curr != right; curr = curr.next) {
