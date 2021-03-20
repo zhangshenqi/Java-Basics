@@ -6,7 +6,7 @@ import java.util.Iterator;
  * @param <E> the type of elements in this list
  *
  */
-public interface List<E> {
+public interface List<E extends Comparable<E>> {
     /**
      * Returns the number of elements in this list.
      * @return the number of elements in this list
@@ -100,7 +100,12 @@ public interface List<E> {
     int lastIndexOf(E e);
     
     /**
-     * Reverse the list.
+     * Reverses the list.
      */
     void reverse();
+    
+    /**
+     * Sorts this list into ascending order, according to the natural ordering of its elements.
+     */
+    void sort();
 }
