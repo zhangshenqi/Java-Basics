@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -261,7 +262,74 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public void sort() {
-        Arrays.sort(elements, 0, size);
+        sort(null);
+    }
+    
+    /**
+     * Sorts this list according to the order induced by the specified comparator.
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
+     */
+    @Override
+    public void sort(Comparator<E> c) {
+        if (c == null) {
+            c = new Comparator<E>() {
+                @Override
+                public int compare(E e1, E e2) {
+                    return e1.compareTo(e2);
+                }
+            };
+        }
+        quickSort(0, size - 1, c);
+    }
+    
+    /**
+     * Sorts this list according to the order induced by the specified comparator.
+     * @param left the index of the first element, inclusive, to be sorted
+     * @param right the index of the last element, inclusive, to be sorted
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
+     */
+    private void quickSort(int left, int right, Comparator<E> c) {
+        if (left >= right) {
+            return;
+        }
+        int pivotIndex = partition(left, right, c);
+        quickSort(left, pivotIndex - 1, c);
+        quickSort(pivotIndex + 1, right, c);
+    }
+    
+    /**
+     * Partitions the list into two parts with a pivot value.
+     * @param left the index of the first element, inclusive, to be partitioned
+     * @param right the index of the last element, inclusive, to be partitioned
+     * @param c the comparator to determine the order of this list. A null value indicates that the elements' natural ordering should be used.
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    private int partition(int left, int right, Comparator<E> c) {
+        E pivot = (E) elements[right];
+        int i = left - 1, j = right;
+        while (true) {
+            while (c.compare((E) elements[++i], pivot) < 0);
+            while (j > left && c.compare((E) elements[--j], pivot) > 0);
+            if (i >= j) {
+                break;
+            } else {
+                swap(i, j);
+            }
+        }
+        swap(i, right);
+        return i;
+    }
+    
+    /**
+     * Swap two elements in this list.
+     * @param index1 index of the first element
+     * @param index2 index of the second element
+     */
+    private void swap(int index1, int index2) {
+        Object temp = elements[index1];
+        elements[index1] = elements[index2];
+        elements[index2] = temp;
     }
     
     /**
