@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * @param <E> the type of elements in this list
  *
  */
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E extends Comparable<E>> implements List<E> {
     /**
      * Default capacity.
      */
@@ -242,7 +242,7 @@ public class ArrayList<E> implements List<E> {
     }
     
     /**
-     * Reverse the list.
+     * Reverses the list.
      */
     @Override
     public void reverse() {
@@ -254,6 +254,14 @@ public class ArrayList<E> implements List<E> {
             i++;
             j--;
         }
+    }
+    
+    /**
+     * Sorts this list into ascending order, according to the natural ordering of its elements.
+     */
+    @Override
+    public void sort() {
+        Arrays.sort(elements, 0, size);
     }
     
     /**
