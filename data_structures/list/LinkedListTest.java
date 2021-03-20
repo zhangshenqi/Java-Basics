@@ -10,7 +10,7 @@ public class LinkedListTest {
      * Print the list.
      * @param list the list to print
      */
-    public static <E> void printList(List<E> list) {
+    public static <E extends Comparable<E>> void printList(List<E> list) {
         System.out.print("size = ");
         System.out.print(list.size());
         System.out.print(" elements = ");
@@ -68,6 +68,9 @@ public class LinkedListTest {
         System.out.println("Reverse the list");
         list.reverse();
         printList(list);
+        System.out.println("Sort the list");
+        list.sort();
+        printList(list);
         System.out.println("Iterate the list");
         Iterator<String> iter = list.iterator();
         while (iter.hasNext()) {
@@ -82,6 +85,6 @@ public class LinkedListTest {
     public static void main(String[] args) {
         testList(new SinglyLinkedList<String>());
         System.out.println();
-        testList(new DoublyLinkedList<String>());
+//        testList(new DoublyLinkedList<String>());
     }
 }
