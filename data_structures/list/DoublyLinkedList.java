@@ -424,11 +424,11 @@ public class DoublyLinkedList<E extends Comparable<E>> implements List<E> {
          */
         private E item;
         /**
-         * Previous node;
+         * Previous node.
          */
         private Node<E> prev;
         /**
-         * Next node;
+         * Next node.
          */
         private Node<E> next;
         

@@ -420,7 +420,7 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E> {
          */
         private E item;
         /**
-         * Next node;
+         * Next node.
          */
         private Node<E> next;
         
