@@ -82,8 +82,6 @@ public class BinaryTree<E> {
             return null;
         }
         
-        System.out.println("leftPre=" + leftPre[0] + " leftIn=" + leftIn + " rightIn=" + rightIn);
-        
         E nodeVal = preorder[leftPre[0]];
         leftPre[0]++;
         Node<E> node = new Node<E>(nodeVal);
@@ -98,8 +96,42 @@ public class BinaryTree<E> {
         
     }
     
+    /**
+     * Constructs a tree with inorder and postorder. No duplicate element is allowed.
+     * @param inorder inorder
+     * @param postorder postorder
+     */
     public void constructFromInorderPostorder(E[] inorder, E[] postorder) {
+        Map<E, Integer> inorderIndexMap = new HashMap<E, Integer>();
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIndexMap.put(inorder[i], i);
+        }
+        root = constructFromInorderPostorder(inorder, 0, inorder.length - 1, inorderIndexMap, postorder, new int[]{postorder.length - 1});
+    }
+    
+    /**
+     * Constructs a tree with inorder and postorder. No duplicate element is allowed.
+     * @param inorder inorder
+     * @param leftIn the index of the first element in inorder
+     * @param rightIn the index of the last element in inorder
+     * @param inorderIndexMap the map which contains the index of each element of inorder
+     * @param postorder post order
+     * @param rightPost the index of the last element in postorder
+     * @return the root of the tree
+     */
+    private Node<E> constructFromInorderPostorder(E[] inorder, int leftIn, int rightIn, Map<E, Integer> inorderIndexMap, E[] postorder, int[] rightPost) {
+        if (leftIn > rightIn) {
+            return null;
+        }
         
+        E nodeVal = postorder[rightPost[0]];
+        rightPost[0]--;
+        Node<E> node = new Node<E>(nodeVal);
+        
+        int inorderIndex = inorderIndexMap.get(nodeVal);
+        node.right = constructFromInorderPostorder(inorder, inorderIndex + 1, rightIn, inorderIndexMap, postorder, rightPost);
+        node.left = constructFromInorderPostorder(inorder, leftIn, inorderIndex - 1, inorderIndexMap, postorder, rightPost);
+        return node;
     }
     
     /**
