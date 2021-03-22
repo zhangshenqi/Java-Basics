@@ -46,6 +46,8 @@ public class BinarySearchTreeTest {
         System.out.println(bst.inorder());
         System.out.print("postorder: ");
         System.out.println(bst.postorder());
+        System.out.println("Height");
+        System.out.println(bst.height());
         System.out.println();
         
         System.out.println("Construct a binary tree in reverse order");
