@@ -92,8 +92,44 @@ public class BinaryTree<E> {
         return node;
     }
     
+    /**
+     * Constructs a tree with preorder and postorder. No duplicate element is allowed.
+     * @param preorder preorder
+     * @param postorder postorder
+     */
     public void constructFromPreorderPostorder(E[] preorder, E[] postorder) {
+        Map<E, Integer> postorderIndexMap = new HashMap<E, Integer>();
+        for (int i = 0; i < postorder.length; i++) {
+            postorderIndexMap.put(postorder[i], i);
+        }
+        root = constructFromPreorderPostorder(preorder, new int[]{0}, postorder, 0, postorder.length - 1, postorderIndexMap);
+    }
+    
+    /**
+     * Constructs a tree with preorder and postorder. No duplicate element is allowed.
+     * @param preorder preorder
+     * @param leftPre the index of the first element in preorder
+     * @param postorder postorder
+     * @param leftPost the index of the first element in postorder
+     * @param rightPost the index of the last element in postorder
+     * @param postorderIndexMap the map which contains the index of each element of postorder
+     * @return
+     */
+    private Node<E> constructFromPreorderPostorder(E[] preorder, int[] leftPre, E[] postorder, int leftPost, int rightPost, Map<E, Integer> postorderIndexMap) {
+        if (leftPost > rightPost) {
+            return null;
+        }
         
+        E nodeVal = preorder[leftPre[0]];
+        leftPre[0]++;
+        Node<E> node = new Node<E>(nodeVal);
+        
+        if (rightPost > leftPost ) {
+            int postorderIndex = postorderIndexMap.get(preorder[leftPre[0]]);
+            node.left = constructFromPreorderPostorder(preorder, leftPre, postorder, leftPost, postorderIndex, postorderIndexMap);
+            node.right = constructFromPreorderPostorder(preorder, leftPre, postorder, postorderIndex + 1, rightPost - 1, postorderIndexMap);
+        }
+        return node;
     }
     
     /**

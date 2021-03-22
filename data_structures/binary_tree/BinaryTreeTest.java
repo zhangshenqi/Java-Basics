@@ -37,5 +37,15 @@ public class BinaryTreeTest {
         System.out.println(tree.inorder());
         System.out.print("postorder: ");
         System.out.println(tree.postorder());
+        System.out.println();
+        
+        System.out.println("Construct a binary tree from preorder and postorder");
+        tree = new BinaryTree<Integer>(BinaryTree.ConstructMethod.PREORDER_POSTORDER, preorder, postorder);
+        System.out.print("preorder: ");
+        System.out.println(tree.preorder());
+        System.out.print("inorder: ");
+        System.out.println(tree.inorder());
+        System.out.print("postorder: ");
+        System.out.println(tree.postorder());
     }
 }
