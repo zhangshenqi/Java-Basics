@@ -47,5 +47,15 @@ public class BinaryTreeTest {
         System.out.println(tree.inorder());
         System.out.print("postorder: ");
         System.out.println(tree.postorder());
+        System.out.println();
+        
+        System.out.println("Contain 5");
+        System.out.println(tree.contains(5));
+        System.out.println("Contain 1");
+        System.out.println(tree.contains(1));
+        System.out.println("Contain 7");
+        System.out.println(tree.contains(7));
+        System.out.println("Height");
+        System.out.println(tree.height());
     }
 }

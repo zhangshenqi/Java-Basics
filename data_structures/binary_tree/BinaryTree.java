@@ -7,7 +7,7 @@ import java.util.HashMap;
  * Binary tree.
  * Permits all elements, including null.
  * @author Shenqi Zhang
- * @param <E> the type of elements in this list
+ * @param <E> the type of elements in this tree
  *
  */
 public class BinaryTree<E> {
@@ -205,7 +205,7 @@ public class BinaryTree<E> {
      * @param node root of the specified tree
      * @return true if the specified tree contains the specified element
      */
-    private boolean contains(E e, Node<E> node) {
+    protected boolean contains(E e, Node<E> node) {
         if (node == null) {
             return false;
         }
@@ -292,19 +292,19 @@ public class BinaryTree<E> {
      * @param <E> the type of element in this node
      * 
      */
-    private static class Node<E> {
+    static class Node<E> {
         /**
          * Item of this node.
          */
-        private E item;
+        E item;
         /**
          * Node of the left child.
          */
-        private Node<E> left;
+        Node<E> left;
         /**
          * Node of the right child.
          */
-        private Node<E> right;
+        Node<E> right;
         
         /**
          * Constructs a node with specified element and next node.
