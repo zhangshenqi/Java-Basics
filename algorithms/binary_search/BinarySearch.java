@@ -35,6 +35,9 @@ public class BinarySearch {
      * @return index of the first element no less than the specified value, if it is contained in the array; otherwise, -1.
      */
     public static int findFirstIndexNoSmallerThan(int[] a, int key) {
+        if (a.length == 0 || a[a.length - 1] < key) {
+            return -1;
+        }
         int left = 0, right = a.length - 1;
         while (left < right) {
             int middle = left + (right - left) / 2;
@@ -43,9 +46,6 @@ public class BinarySearch {
             } else {
                 left = middle + 1;
             }
-        }
-        if (left == a.length - 1 && a[left] < key) {
-            return -1;
         }
         return left;
     }
