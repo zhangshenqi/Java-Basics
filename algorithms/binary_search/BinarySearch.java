@@ -26,4 +26,27 @@ public class BinarySearch {
         }
         return -left - 1;
     }
+    
+    /**
+     * Searches the specified array of ints for the first element no less than the specified value using the binary search algorithm.
+     * The array must be sorted prior to making this call. If it is not sorted, the results are undefined.
+     * @param a the array to be searched
+     * @param key the value to be searched for
+     * @return index of the first element no less than the specified value, if it is contained in the array; otherwise, -1.
+     */
+    public static int findFirstIndexNoSmallerThan(int[] a, int key) {
+        int left = 0, right = a.length - 1;
+        while (left < right) {
+            int middle = left + (right - left) / 2;
+            if (a[middle] >= key) {
+                right = middle;
+            } else {
+                left = middle + 1;
+            }
+        }
+        if (left == a.length - 1 && a[left] < key) {
+            return -1;
+        }
+        return left;
+    }
 }
