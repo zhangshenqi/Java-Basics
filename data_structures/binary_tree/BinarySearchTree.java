@@ -67,7 +67,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
     
     /**
      * Adds an item into this tree.
-     * @param e the item to be added into this tree.
+     * @param e the item to be added into this tree
      * @return true if this tree changed as a result of the call
      */
     public boolean add(E e) {
@@ -81,7 +81,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
     
     /**
      * Adds an item into this tree.
-     * @param e the item to be added into this tree.
+     * @param e the item to be added into this tree
      * @param curr current node
      * @param parent parent node
      * @param isLeftChild true if curr is the left child of parent
@@ -105,5 +105,93 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
             return add(e, curr.right, curr, false);
         }
         return false;
+    }
+    
+    /**
+     * Removes an item from this tree.
+     * @param e the item to be removed from this tree
+     * @return true if this tree changed as a result of the call
+     */
+    public boolean remove(E e) {
+        if (root == null) {
+            return false;
+        }
+        
+        return remove(e, root, root, false);
+    }
+    
+    /**
+     * Removes an item from this tree.
+     * @param e the item to be removed from this tree
+     * @param curr current node
+     * @param parent parent node
+     * @param isLeftChild true if curr is the left child of parent
+     * @return true if this tree changed as a result of the call
+     */
+    protected boolean remove(E e, Node<E> curr, Node<E> parent, boolean isLeftChild) {
+        if (curr == null) {
+            return false;
+        }
+        
+        int compareResult = comparator.compare(e, curr.item);
+        if (compareResult < 0) {
+            return remove(e, curr.left, curr, true);
+        }
+        if (compareResult > 0) {
+            return remove(e, curr.right, curr, false);
+        }
+        
+        if (curr.left == null) {
+            if (curr.right == null) {
+                if (curr == root) {
+                    root = null;
+                } else if (isLeftChild) {
+                    parent.left = null;
+                } else {
+                    parent.right = null;
+                }
+            } else {
+                if (curr == root) {
+                    root = curr.right;
+                } else if (isLeftChild) {
+                    parent.left = curr.right;
+                } else {
+                    parent.right = curr.right;
+                }
+            }
+        } else {
+            if (curr.right == null) {
+                if (curr == root) {
+                    root = curr.left;
+                } else if (isLeftChild) {
+                    parent.left = curr.left;
+                } else {
+                    parent.right = curr.left;
+                }
+            } else {
+                Node<E> successor = curr.right;
+                Node<E> successorParent = curr;
+                while (successor.left != null) {
+                    successorParent = successor;
+                    successor = successor.left;
+                }
+                
+                if (successor != curr.right) {
+                    successorParent.left = successor.right;
+                    successor.right = curr.right;
+                }
+                successor.left = curr.left;
+                
+                if (curr == root) {
+                    root = successor;
+                } else if (isLeftChild) {
+                    parent.left = successor;
+                } else {
+                    parent.right = successor;
+                }
+            }
+        }
+        
+        return true;
     }
 }

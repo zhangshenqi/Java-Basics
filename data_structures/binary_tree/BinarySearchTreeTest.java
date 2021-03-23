@@ -48,6 +48,49 @@ public class BinarySearchTreeTest {
         System.out.println(bst.postorder());
         System.out.println("Height");
         System.out.println(bst.height());
+        
+        //     3
+        //    / \
+        //   2   5
+        //  /   / \
+        // 1   4   8
+        //        / \
+        //       6   9
+        //        \
+        //         7
+        System.out.println("Remove 9");
+        System.out.println(bst.remove(9));
+        System.out.println("Remove 6");
+        System.out.println(bst.remove(6));
+        System.out.println("Add 8");
+        System.out.println(bst.add(8));
+        System.out.println("Add 6");
+        System.out.println(bst.add(6));
+        System.out.println("Add 9");
+        System.out.println(bst.add(9));
+        System.out.println("Add 7");
+        System.out.println(bst.add(7));
+        System.out.print("preorder: ");
+        System.out.println(bst.preorder());
+        System.out.print("inorder: ");
+        System.out.println(bst.inorder());
+        System.out.print("postorder: ");
+        System.out.println(bst.postorder());
+        //     3
+        //    / \
+        //   2   6
+        //  /   / \
+        // 1   4   8
+        //        / \
+        //       7   9
+        System.out.println("Remove 5");
+        System.out.println(bst.remove(5));
+        System.out.print("preorder: ");
+        System.out.println(bst.preorder());
+        System.out.print("inorder: ");
+        System.out.println(bst.inorder());
+        System.out.print("postorder: ");
+        System.out.println(bst.postorder());
         System.out.println();
         
         System.out.println("Construct a binary tree in reverse order");
