@@ -26,5 +26,22 @@ public class BinarySearchTest {
         System.out.println(BinarySearch.findIndexOf(a, 9));
         System.out.println("Index of 12");
         System.out.println(BinarySearch.findIndexOf(a, 12));
+        System.out.println();
+        
+        System.out.println("Create an array");
+        System.out.println("[1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4]");
+        int[] b = {1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4};
+        System.out.println("Find first index no smaller than -1");
+        System.out.println(BinarySearch.findFirstIndexNoSmallerThan(b, -1));
+        System.out.println("Find first index no smaller than 1");
+        System.out.println(BinarySearch.findFirstIndexNoSmallerThan(b, 1));
+        System.out.println("Find first index no smaller than 2");
+        System.out.println(BinarySearch.findFirstIndexNoSmallerThan(b, 2));
+        System.out.println("Find first index no smaller than 3");
+        System.out.println(BinarySearch.findFirstIndexNoSmallerThan(b, 3));
+        System.out.println("Find first index no smaller than 4");
+        System.out.println(BinarySearch.findFirstIndexNoSmallerThan(b, 4));
+        System.out.println("Find first index no smaller than 5");
+        System.out.println(BinarySearch.findFirstIndexNoSmallerThan(b, 5));
     }
 }

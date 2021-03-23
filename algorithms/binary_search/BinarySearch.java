@@ -28,7 +28,7 @@ public class BinarySearch {
     }
     
     /**
-     * Searches the specified array of ints for the first element no less than the specified value using the binary search algorithm.
+     * Searches the specified array of ints for the first element no smaller than the specified value using the binary search algorithm.
      * The array must be sorted prior to making this call. If it is not sorted, the results are undefined.
      * @param a the array to be searched
      * @param key the value to be searched for
