@@ -7,9 +7,20 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * Class for unweighted graph.
+ * @author Shenqi Zhang
+ *
+ */
 public abstract class UnweightedGraph implements Graph {
-    Map<Integer, List<Integer>> adjacencyList;
+    /**
+     * Each vertex stores a list of adjacent vertexes.
+     */
+    protected Map<Integer, List<Integer>> adjacencyList;
     
+    /**
+     * Constructs an empty graph.
+     */
     public UnweightedGraph() {
         adjacencyList = new HashMap<Integer, List<Integer>>();
     }
@@ -115,6 +126,10 @@ public abstract class UnweightedGraph implements Graph {
         return null;
     }
     
+    /**
+     * Returns the string representation of this graph.
+     * @return string representation of this graph
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
