@@ -24,7 +24,7 @@ public interface Graph {
      * Gets the shortest distance from the source vertex to the destination vertex.
      * @param source the source vertex
      * @param destination the destination vertex
-     * @return the shortest distance from the source vertex to the destination vertex
+     * @return the shortest distance from the source vertex to the destination vertex, if it is found; otherwise, -1.
      */
     int getShortestDistance(int source, int destination);
     
@@ -33,7 +33,7 @@ public interface Graph {
      * If there are multiple shortest path, there is no guarantee which one will be found.
      * @param source the source vertex
      * @param destination the destination vertex
-     * @return the shortest path from the source vertex to the destination vertex
+     * @return the shortest path from the source vertex to the destination vertex, if it is found; otherwise, -1.
      */
     List<Integer> getShortestPath(int source, int destination);
 }
