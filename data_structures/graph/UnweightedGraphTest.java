@@ -32,5 +32,8 @@ public class UnweightedGraphTest {
     public static void main(String[] args) {
         System.out.println("Constructs an unweighted undirected graph");
         testGraph(new UnweightedUndirectedGraph());
+        System.out.println();
+        System.out.println("Constructs an unweighted directed graph");
+        testGraph(new UnweightedDirectedGraph());
     }
 }
