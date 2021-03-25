@@ -118,12 +118,62 @@ public abstract class UnweightedGraph implements Graph {
      * If there are multiple shortest path, there is no guarantee which one will be found.
      * @param source the source vertex
      * @param destination the destination vertex
-     * @return the shortest path from the source vertex to the destination vertex, if it is found; otherwise, -1.
+     * @return the shortest path from the source vertex to the destination vertex, if it is found; otherwise, empty list.
      */
     @Override
     public List<Integer> getShortestPath(int source, int destination) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Integer> path = new ArrayList<Integer>();
+        if (!adjacencyList.containsKey(source) || !adjacencyList.containsKey(destination)) {
+            return path;
+        }
+        
+        if (source == destination) {
+            path.add(source);
+            return path;
+        }
+        
+        Map<Integer, Integer> parentMap = new HashMap<Integer, Integer>();
+        parentMap.put(source, source);
+        Queue<Integer> queue = new LinkedList<Integer>();
+        queue.add(source);
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            for (int neighbor : adjacencyList.get(curr)) {
+                if (neighbor == destination) {
+                    parentMap.put(destination, curr);
+                    retrievePath(destination, parentMap, path);
+                    return path;
+                }
+                if (!parentMap.containsKey(neighbor)) {
+                    parentMap.put(neighbor, curr);
+                    queue.add(neighbor);
+                }
+            }
+        }
+        return path;
+    }
+    
+    /**
+     * Retrieves the path from the source to the current vertex.
+     * @param curr the current vertex
+     * @param parentMap map which stores the parent of each vertex
+     * @param path path
+     */
+    private void retrievePath(int curr, Map<Integer, Integer> parentMap, List<Integer> path) {
+        while (parentMap.get(curr) != curr) {
+            path.add(curr);
+            curr = parentMap.get(curr);
+        }
+        path.add(curr);
+        
+        int i = 0, j = path.size() - 1;
+        while (i < j) {
+            int temp = path.get(i);
+            path.set(i, path.get(j));
+            path.set(j, temp);
+            i++;
+            j--;
+        }
     }
     
     /**
