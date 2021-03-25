@@ -1,3 +1,8 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Map;
+import java.util.HashMap;
+
 /**
  * Class for unweighted directed graph.
  * @author Shenqi Zhang
@@ -37,5 +42,40 @@ public class UnweightedDirectedGraph extends UnweightedGraph {
         
         adjacencyList.get(source).remove(Integer.valueOf(destination));
         return true;
+    }
+    
+    /**
+     * Returns true if this graph contains loop.
+     * @return true if this graph contains loop
+     */
+    @Override
+    public boolean containsLoop() {
+        Map<Integer, Integer> indegrees = new HashMap<Integer, Integer>();
+        for (int key : adjacencyList.keySet()) {
+            indegrees.put(key, 0);
+        }
+        for (int key : adjacencyList.keySet()) {
+            for (int neighbor : adjacencyList.get(key)) {
+                indegrees.put(neighbor, indegrees.get(neighbor) + 1);
+            }
+        }
+        
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for (int key : indegrees.keySet()) {
+            if (indegrees.get(key) == 0) {
+                queue.add(key);
+            }
+        }
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            indegrees.remove(curr);
+            for (int neighbor : adjacencyList.get(curr)) {
+                indegrees.put(neighbor, indegrees.get(neighbor) - 1);
+                if (indegrees.get(neighbor) == 0) {
+                    queue.add(neighbor);
+                }
+            }
+        }
+        return indegrees.size() != 0;
     }
 }
