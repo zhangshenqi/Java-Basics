@@ -44,6 +44,7 @@ public class WeightedUndirectedGraph extends WeightedGraph {
             Pair neighbor = adjacencyList.get(source).get(i);
             if (neighbor.vertex == destination) {
                 adjacencyList.get(source).remove(i);
+                neighbor.vertex = source;
                 adjacencyList.get(destination).remove(neighbor);
                 return true;
             }

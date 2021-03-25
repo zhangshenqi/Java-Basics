@@ -38,6 +38,18 @@ public class UnweightedGraphTest {
         System.out.println(graph.getShortestPath(0, 6));
         System.out.println("Contain loop");
         System.out.println(graph.containsLoop());
+        System.out.println("Remove edges");
+        graph.removeEdge(0, 1);
+        graph.removeEdge(0, 2);
+        graph.removeEdge(1, 3);
+        graph.removeEdge(1, 4);
+        graph.removeEdge(2, 3);
+        graph.removeEdge(2, 5);
+        graph.removeEdge(4, 6);
+        graph.removeEdge(5, 6);
+        graph.removeEdge(0, 1);
+        graph.removeEdge(0, 7);
+        System.out.print(graph);
     }
     
     /**

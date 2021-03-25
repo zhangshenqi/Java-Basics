@@ -145,5 +145,20 @@ public abstract class WeightedGraph implements Graph {
             sb.append(vertex).append('(').append(weight).append(')');
             return sb.toString();
         }
+        
+        /**
+         * Indicates whether some other object is "equal to" this pair.
+         * @param obj the reference object with which to compare
+         * @return true if this object is the same as the obj argument; false otherwise.
+         */
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null || this.getClass() != obj.getClass()) {
+                return false;
+            }
+            
+            Pair that = (Pair) obj;
+            return this.vertex == that.vertex && this.weight == that.weight;
+        }
     }
 }
