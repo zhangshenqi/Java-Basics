@@ -37,6 +37,10 @@ public class UnweightedUndirectedGraph extends UnweightedGraph {
      */
     @Override
     public boolean removeEdge(int source, int destination) {
+        if (!adjacencyList.containsKey(source) || !adjacencyList.containsKey(destination)) {
+            return false;
+        }
+        
         if (!adjacencyList.get(source).contains(destination)) {
             return false;
         }
