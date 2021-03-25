@@ -60,8 +60,8 @@ public class WeightedGraphTest {
     public static void main(String[] args) {
         System.out.println("Constructs a weighted undirected graph");
         testGraph(new WeightedUndirectedGraph());
-//        System.out.println();
-//        System.out.println("Constructs a weighted directed graph");
-//        testGraph(new UnweightedDirectedGraph());
+        System.out.println();
+        System.out.println("Constructs a weighted directed graph");
+        testGraph(new WeightedDirectedGraph());
     }
 }
