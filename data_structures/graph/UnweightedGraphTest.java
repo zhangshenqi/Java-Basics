@@ -36,6 +36,8 @@ public class UnweightedGraphTest {
         System.out.println(graph.getShortestDistance(0, 6));
         System.out.println("Path from 0 to 6");
         System.out.println(graph.getShortestPath(0, 6));
+        System.out.println("Contain loop");
+        System.out.println(graph.containsLoop());
     }
     
     /**
