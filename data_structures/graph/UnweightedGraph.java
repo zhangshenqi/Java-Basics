@@ -177,6 +177,12 @@ public abstract class UnweightedGraph implements Graph {
     }
     
     /**
+     * Returns true if this graph contains loop.
+     * @return true if this graph contains loop
+     */
+    public abstract boolean containsLoop();
+    
+    /**
      * Returns the string representation of this graph.
      * @return string representation of this graph
      */
