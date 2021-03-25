@@ -90,6 +90,28 @@ public abstract class WeightedGraph implements Graph {
     }
     
     /**
+     * Returns the string representation of this graph.
+     * @return string representation of this graph
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int key : adjacencyList.keySet()) {
+            sb.append(key).append(":");
+            List<Pair> neighbors = adjacencyList.get(key);
+            int size = neighbors.size();
+            if (size > 0) {
+                sb.append(" ").append(neighbors.get(0));
+            }
+            for (int i = 1; i < size; i++) {
+                sb.append(", ").append(neighbors.get(i));
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+    
+    /**
      * A pair consists of the adjacent vertex and the weight of this edge.
      * 
      */
@@ -111,6 +133,17 @@ public abstract class WeightedGraph implements Graph {
         Pair(int vertex, int weight) {
             this.vertex = vertex;
             this.weight = weight;
+        }
+        
+        /**
+         * Returns the string representation of this pair.
+         * @return string representation of this pair
+         */
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(vertex).append('(').append(weight).append(')');
+            return sb.toString();
         }
     }
 }
