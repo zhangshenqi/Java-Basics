@@ -114,6 +114,42 @@ public abstract class UnweightedGraph implements Graph {
     }
     
     /**
+     * Gets the shortest distances from the source vertex to all vertices.
+     * @param source the source vertex
+     * @return the shortest distances from the source vertex to to all vertices, if it is found; otherwise, -1.
+     */
+    @Override
+    public Map<Integer, Integer> getShortestDistances(int source) {
+        Map<Integer, Integer> distances = new HashMap<Integer, Integer>();
+        if (!adjacencyList.containsKey(source)) {
+            return distances;
+        }
+        
+        for (int key : adjacencyList.keySet()) {
+            distances.put(key, -1);
+        }
+        int distance = 0;
+        Set<Integer> visited = new HashSet<Integer>();
+        visited.add(source);
+        Queue<Integer> queue = new LinkedList<Integer>();
+        queue.add(source);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int curr = queue.poll();
+                distances.put(curr, distance);
+                for (int neighbor : adjacencyList.get(curr)) {
+                    if (visited.add(neighbor)) {
+                        queue.add(neighbor);
+                    }
+                }
+            }
+            distance++;
+        }
+        return distances;
+    }
+    
+    /**
      * Gets the shortest path from the source vertex to the destination vertex.
      * If there are multiple shortest path, there is no guarantee which one will be found.
      * @param source the source vertex

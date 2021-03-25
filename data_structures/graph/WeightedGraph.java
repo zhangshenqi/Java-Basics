@@ -124,6 +124,50 @@ public abstract class WeightedGraph implements Graph {
     }
     
     /**
+     * Gets the shortest distances from the source vertex to all vertices.
+     * @param source the source vertex
+     * @return the shortest distances from the source vertex to to all vertices, if it is found; otherwise, -1.
+     */
+    @Override
+    public Map<Integer, Integer> getShortestDistances(int source) {
+        Map<Integer, Integer> distances = new HashMap<Integer, Integer>();
+        if (!adjacencyList.containsKey(source)) {
+            return distances;
+        }
+        
+        for (int key : adjacencyList.keySet()) {
+            distances.put(key, Integer.MAX_VALUE);
+        }
+        distances.put(source, 0);
+        Set<Integer> settled = new HashSet<Integer>();
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> (a[1] - b[1]));
+        pq.add(new int[] {source, 0});
+        while (!pq.isEmpty() && settled.size() < adjacencyList.size()) {
+            int[] curr = pq.poll();
+            if (!settled.add(curr[0])) {
+                continue;
+            }
+            List<Pair> neighbors = adjacencyList.get(curr[0]);
+            for (Pair neighbor : neighbors) {
+                if (settled.contains(neighbor.vertex)) {
+                    continue;
+                }
+                int newDistance = distances.get(curr[0]) + neighbor.weight;
+                if (newDistance < distances.get(neighbor.vertex)) {
+                    distances.put(neighbor.vertex, newDistance);
+                    pq.add(new int[] {neighbor.vertex, newDistance});
+                }
+            }
+        }
+        for (int key : distances.keySet()) {
+            if (!settled.contains(key)) {
+                distances.put(key, -1);
+            }
+        }
+        return distances;
+    }
+    
+    /**
      * Gets the shortest path from the source vertex to the destination vertex.
      * If there are multiple shortest path, there is no guarantee which one will be found.
      * @param source the source vertex

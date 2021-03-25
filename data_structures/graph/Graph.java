@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 
 /**
  * A graph consists of a finite set of vertices and edges.
@@ -27,6 +28,13 @@ public interface Graph {
      * @return the shortest distance from the source vertex to the destination vertex, if it is found; otherwise, -1.
      */
     int getShortestDistance(int source, int destination);
+    
+    /**
+     * Gets the shortest distances from the source vertex to all vertices.
+     * @param source the source vertex
+     * @return the shortest distances from the source vertex to to all vertices, if it is found; otherwise, -1.
+     */
+    Map<Integer, Integer> getShortestDistances(int source);
     
     /**
      * Gets the shortest path from the source vertex to the destination vertex.
