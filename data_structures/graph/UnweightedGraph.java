@@ -52,8 +52,8 @@ public abstract class UnweightedGraph implements Graph {
         }
         
         adjacencyList.remove(vertex);
-        for (int key : adjacencyList.keySet()) {
-            adjacencyList.get(key).remove(Integer.valueOf(vertex));
+        for (List<Integer> neighbors : adjacencyList.values()) {
+            neighbors.remove(Integer.valueOf(vertex));
         }
         return true;
     }
