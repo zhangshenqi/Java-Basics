@@ -51,8 +51,10 @@ public class WeightedGraphTest {
         System.out.println(graph.getShortestDistances(5));
         System.out.println("Distances from 6");
         System.out.println(graph.getShortestDistances(6));
-//        System.out.println("Contain loop");
-//        System.out.println(graph.containsLoop());
+        if (graph instanceof WeightedUndirectedGraph) {
+            System.out.println("Minimum spanning tree");
+            System.out.println(((WeightedUndirectedGraph) graph).getMinimumSpanningTree());
+        }
         System.out.println("Remove edges");
         graph.removeEdge(0, 1);
         graph.removeEdge(0, 2);
