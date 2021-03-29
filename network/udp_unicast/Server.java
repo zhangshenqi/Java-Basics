@@ -61,6 +61,5 @@ public class Server {
             scanner.close();
             socket.close();
         }
-        
     }
 }
