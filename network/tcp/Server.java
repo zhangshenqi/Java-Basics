@@ -97,7 +97,7 @@ public class Server implements Runnable {
                 String response = scanner.next();
                 printLog(false, clientSocket, response);
                 bufferedWriter.write(response);
-                bufferedWriter.write("\n");
+                bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
         } catch (IOException e) {

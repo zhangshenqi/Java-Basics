@@ -59,7 +59,7 @@ public class Client {
                 String request = scanner.next();
                 printLog(true, socket, request);
                 bufferedWriter.write(request);
-                bufferedWriter.write("\n");
+                bufferedWriter.newLine();
                 bufferedWriter.flush();
                 
                 String response = bufferedReader.readLine();
